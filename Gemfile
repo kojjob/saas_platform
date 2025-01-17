@@ -64,6 +64,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "rspec-rails", "~> 7.1", :groups => [:development, :test]
-gem "factory_bot_rails", "~> 6.4", :groups => [:development, :test]
-gem "faker", "~> 3.5", :groups => [:development, :test]
+gem "rspec-rails", "~> 7.1", groups: [ :development, :test ]
+gem "factory_bot_rails", "~> 6.4", groups: [ :development, :test ]
+gem "faker", "~> 3.5", groups: [ :development, :test ]
