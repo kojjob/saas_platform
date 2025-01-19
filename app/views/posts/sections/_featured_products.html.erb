@@ -1,0 +1,29 @@
+<div class="bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-8">Featured Products</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <% @featured_products.each do |product| %>
+        <div class="group relative">
+          <div class="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden bg-gray-100">
+            <% if product.featured_image.attached? %>
+              <%= image_tag product.featured_image, class: "w-full h-full object-center object-cover group-hover:opacity-75 transition duration-300" %>
+            <% else %>
+              <div class="h-48 bg-gray-200 group-hover:opacity-75"></div>
+            <% end %>
+          </div>
+          <div class="mt-4 flex justify-between">
+            <div>
+              <h3 class="text-sm text-gray-700">
+                <%= link_to product.name, product_path(product), class: "font-medium" %>
+              </h3>
+              <p class="mt-1 text-sm text-gray-500">Category</p>
+            </div>
+            <p class="text-sm font-medium text-gray-900">
+              <%= number_to_currency(product.price) %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

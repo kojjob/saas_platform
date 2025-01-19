@@ -2,12 +2,140 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
+
 
 @layer components {
   .btn-primary {
     @apply py-2 px-4 bg-blue-200;
   }
-}
+  /* Show Page */
+  .status-active {
+      @apply bg-green-100 text-green-800;
+    }
+  .status-trial {
+      @apply bg-blue-100 text-blue-800;
+    }
+  .status-maintenance {
+      @apply bg-yellow-100 text-yellow-800;
+    }
+  .status-inactive {
+      @apply bg-gray-100 text-gray-800;
+    }
 
-*/
+  /* Card and Container Styles */
+  .stats-card {
+    @apply relative overflow-hidden bg-white rounded-xl border border-gray-200 p-6 transition-all duration-300 hover:shadow-md hover:border-gray-300;
+  }
+
+  .floating-action-bar {
+    @apply fixed top-4 right-4 z-50 bg-white/80 backdrop-blur-lg rounded-full shadow-lg border border-gray-200/50 p-1.5;
+  }
+
+  .action-button {
+    @apply p-2 text-gray-600 hover:text-gray-900 rounded-full hover:bg-gray-100 transition-all;
+  }
+
+  /* Status Badges */
+  .status-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .status-badge-active {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .status-badge-trial {
+    @apply bg-blue-100 text-blue-800;
+  }
+
+  .status-badge-maintenance {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  .status-badge-inactive {
+    @apply bg-gray-100 text-gray-800;
+  }
+
+  /* Progress Bars */
+  .progress-bar-bg {
+    @apply overflow-hidden h-2 text-xs flex rounded-full bg-gray-100;
+  }
+
+  .progress-bar-fill {
+    @apply rounded-full shadow-none flex flex-col text-center whitespace-nowrap justify-center bg-blue-500 transition-all duration-500;
+  }
+
+  /* Stats Grid Items */
+  .stat-item {
+    @apply bg-gray-50 rounded-xl p-4 transition-all duration-300 hover:shadow-sm hover:bg-gray-50/80;
+  }
+
+  .stat-item-header {
+    @apply flex items-center justify-between mb-2;
+  }
+
+  .stat-value {
+    @apply text-2xl font-bold text-gray-900;
+  }
+
+  .stat-label {
+    @apply text-sm font-medium text-gray-600;
+  }
+
+  /* Feature Item */
+  .feature-item {
+    @apply flex items-center justify-between p-3 rounded-lg transition-colors duration-200;
+  }
+
+  .feature-item-enabled {
+    @apply bg-green-50 hover:bg-green-100/80;
+  }
+
+  .feature-item-disabled {
+    @apply bg-gray-50 hover:bg-gray-100/80;
+  }
+
+  /* Timeline Items */
+  .timeline-item {
+    @apply relative pb-8 hover:bg-gray-50/50 rounded-lg transition-colors duration-200;
+  }
+
+  .timeline-marker {
+    @apply w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center ring-8 ring-white;
+  }
+
+  .timeline-content {
+    @apply min-w-0 flex-1 pt-1.5 flex justify-between space-x-4;
+  }
+
+  /* Animation Keyframes */
+  @keyframes slide-up {
+    0% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Animation Classes */
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out forwards;
+  }
+
+  /* Dropdown Menu */
+  .dropdown-menu {
+    @apply absolute right-0 mt-2 w-48 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none;
+  }
+
+  .dropdown-item {
+    @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-150;
+  }
+
+  .dropdown-item-danger {
+    @apply block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors duration-150;
+  }
+
+}

@@ -1,0 +1,188 @@
+<div class="min-h-screen bg-gray-50">
+  <%# Floating Quick Actions Bar %>
+  <div class="fixed top-4 right-4 z-50">
+    <div class="bg-white/80 backdrop-blur-lg rounded-full shadow-lg border border-gray-200/50 p-1.5 flex items-center space-x-2">
+      <%= link_to tenants_path, class: "p-2 text-gray-600 hover:text-gray-900 rounded-full hover:bg-gray-100 transition-all" do %>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+      <% end %>
+
+      <div class="w-px h-6 bg-gray-200"></div>
+
+      <div class="flex items-center space-x-2">
+        <%= link_to edit_tenant_path(@tenant), class: "p-2 text-gray-600 hover:text-gray-900 rounded-full hover:bg-gray-100 transition-all" do %>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+          </svg>
+        <% end %>
+
+        <button data-action="click->tenant#toggleMenu" class="p-2 text-gray-600 hover:text-gray-900 rounded-full hover:bg-gray-100 transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <%# Main Content %>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <%# Tenant Header %>
+    <header class="mb-8">
+      <div class="flex items-center space-x-6">
+        <%# Tenant Avatar %>
+        <div class="relative">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-600 to-blue-600 flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+            <%= @tenant.name[0].upcase %>
+          </div>
+          <div class="absolute -bottom-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center <%= status_color_class(@tenant.status) %>">
+            <%= status_icon(@tenant.status) %>
+          </div>
+        </div>
+
+        <div class="flex-1">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-2xl font-bold text-gray-900 flex items-center">
+                <%= @tenant.name %>
+                <span class="ml-3 inline-flex items-center px-3 py-1 rounded-full text-xs font-medium <%= status_badge_class(@tenant.status) %>">
+                  <%= @tenant.status.titleize %>
+                </span>
+              </h1>
+              <div class="mt-1 flex items-center text-sm text-gray-500">
+                <svg class="flex-shrink-0 mr-1.5 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                </svg>
+                <%= link_to "https://#{@tenant.subdomain}.example.com", "#", class: "hover:text-blue-600 font-mono" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <%# Content Grid %>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <%# Main Stats Card %>
+      <div class="lg:col-span-2">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+          <div class="p-6">
+            <h2 class="text-lg font-semibold text-gray-900">Overview</h2>
+            
+            <%# Stats Grid %>
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+              <% @tenant.stats.each do |label, data| %>
+                <div class="bg-gray-50 rounded-xl p-4">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-gray-600"><%= label %></span>
+                    <%= render_stat_icon(data[:icon]) %>
+                  </div>
+                  <div class="mt-2">
+                    <span class="text-2xl font-bold text-gray-900"><%= data[:value] %></span>
+                    <span class="ml-2 text-sm font-medium <%= data[:trend] == 'up' ? 'text-green-600' : 'text-red-600' %>">
+                      <%= data[:change] %>
+                    </span>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <%# Features Card %>
+      <div>
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+          <div class="p-6">
+            <h2 class="text-lg font-semibold text-gray-900">Features</h2>
+            
+           <div class="mt-6 space-y-4">
+            <% @tenant.features&.each do |feature, status| %>
+              <div class="flex items-center justify-between p-3 rounded-lg <%= status ? 'bg-green-50' : 'bg-gray-50' %>">
+                <div class="flex items-center space-x-3">
+                  <div class="flex-shrink-0">
+                    <% if status %>
+                      <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                      </div>
+                    <% else %>
+                      <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                      </div>
+                    <% end %>
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-900"><%= feature.to_s.titleize %></p>
+                    <p class="text-xs text-gray-500">
+                      <%= status ? "Enabled" : "Disabled" %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <%# Activity Timeline %>
+      <div class="lg:col-span-3">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h2 class="text-lg font-semibold text-gray-900">Recent Activity</h2>
+              <button class="text-sm text-blue-600 hover:text-blue-700">View all</button>
+            </div>
+            
+            <div class="mt-6 flow-root">
+              <ul class="-mb-8">
+                <% 5.times do |i| %>
+                  <li>
+                    <div class="relative pb-8">
+                      <% if i < 4 %>
+                        <span class="absolute top-5 left-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+                      <% end %>
+                      <div class="relative flex items-start space-x-3">
+                        <div class="relative">
+                          <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center ring-8 ring-white">
+                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="min-w-0 flex-1">
+                          <div class="text-sm font-medium text-gray-900">Settings updated</div>
+                          <p class="mt-1 text-sm text-gray-500">Updated by Admin User</p>
+                          <p class="mt-1 text-xs text-gray-400"><%= time_ago_in_words(rand(1..30).days.ago) %> ago</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# Dropdown Menu Modal %>
+<div data-tenant-target="menu" class="hidden fixed top-16 right-4 w-48 rounded-lg bg-white shadow-lg border border-gray-200 py-1">
+  <%= link_to "Edit Settings", edit_tenant_path(@tenant), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+  <%= link_to "View Audit Log", "#", class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+  <div class="border-t border-gray-200 my-1"></div>
+  <%= button_to "Delete Tenant", tenant_path(@tenant), 
+      method: :delete,
+      class: "block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50",
+      data: { 
+        confirm: "Are you sure you want to delete this tenant? This action cannot be undone.",
+        turbo_confirm: "Are you sure you want to delete this tenant? This action cannot be undone."
+      } %>
+</div>
