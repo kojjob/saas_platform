@@ -1,0 +1,133 @@
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 py-8">
+  <div class="max-w-3xl mx-auto">
+    <%# Form Header %>
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">
+        <%= tenant.persisted? ? "Edit Organization" : "New Organization" %>
+      </h1>
+      <p class="mt-2 text-sm text-gray-600">
+        <%= tenant.persisted? ? "Update your organization settings" : "Create a new organization in your account" %>
+      </p>
+    </div>
+
+    <%= form_with(model: tenant, class: "space-y-8") do |form| %>
+      <%# Error Summary %>
+      <% if tenant.errors.any? %>
+        <div class="rounded-lg bg-red-50 p-4">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-red-800">
+                <%= pluralize(tenant.errors.count, "error") %> prohibited this organization from being saved:
+              </h3>
+              <div class="mt-2 text-sm text-red-700">
+                <ul class="list-disc pl-5 space-y-1">
+                  <% tenant.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <%# Main Form Card %>
+      <div class="bg-white shadow-sm rounded-lg border border-gray-200">
+        <%# Basic Information Section %>
+        <div class="p-6 space-y-6">
+          <div>
+            <h2 class="text-lg font-medium text-gray-900">Basic Information</h2>
+            <p class="mt-1 text-sm text-gray-500">This information will be displayed publicly.</p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6">
+            <%# Organization Name %>
+            <div>
+              <%= form.label :name, "Organization Name", class: "block text-sm font-medium text-gray-700" %>
+              <div class="relative mt-1 rounded-md shadow-sm">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                  </svg>
+                </div>
+                <%= form.text_field :name, 
+                    class: "py-2 block w-full pl-10 rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 text-sm #{tenant.errors[:name].any? ? 'border-red-300' : ''}",
+                    placeholder: "Enter organization name" %>
+              </div>
+              <% if tenant.errors[:name].any? %>
+                <p class="mt-2 text-sm text-red-600"><%= tenant.errors[:name].join(", ") %></p>
+              <% end %>
+            </div>
+
+            <%# Subdomain %>
+            <div>
+              <%= form.label :subdomain, class: "block text-sm font-medium text-gray-700" do %>
+                Subdomain
+                <span class="ml-1 text-xs text-gray-400">(cannot be changed later)</span>
+              <% end %>
+              <div class="mt-1 flex rounded-md shadow-sm">
+                <div class="relative flex-grow">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                    </svg>
+                  </div>
+                  <%= form.text_field :subdomain,
+                      class: "py-2 block w-full pl-10 rounded-none rounded-l-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 text-sm #{tenant.errors[:subdomain].any? ? 'border-red-300' : ''}", 
+                      placeholder: "your-organization" %>
+                </div>
+                <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                  .example.com
+                </span>
+              </div>
+              <% if tenant.errors[:subdomain].any? %>
+                <p class="mt-2 text-sm text-red-600"><%= tenant.errors[:subdomain].join(", ") %></p>
+              <% end %>
+            </div>
+
+            <%# Status %>
+            <div>
+              <%= form.label :status, class: "block text-sm font-medium text-gray-700 mb-2" %>
+              <div class="grid grid-cols-3 gap-3">
+                <% ['active', 'maintenance', 'inactive', 'archived'].each do |status_option| %>
+                  <label class="relative flex items-center justify-center rounded-lg border border-gray-200 p-4 cursor-pointer hover:border-gray-300 bg-white peer-checked:border-blue-500">
+                    <%= form.radio_button :status, status_option, 
+                        class: "absolute h-0 w-0 opacity-0 peer" %>
+                    <div class="flex items-center space-x-2 text-gray-900">
+                      <%= render_status_icon(status_option) %>
+                      <span class="font-medium"><%= status_option.titleize %></span>
+                    </div>
+                  </label>
+                <% end %>
+              </div>
+            </div>
+
+            <%# Settings %>
+            <div>
+              <%= form.label :settings, "Advanced Settings (JSON)", class: "block text-sm font-medium text-gray-700" %>
+              <div class="mt-1">
+                <%= form.text_area :settings,
+                    rows: 4,
+                    class: "block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 text-sm font-mono #{tenant.errors[:settings].any? ? 'border-red-300' : ''}",
+                    placeholder: '{ "features": { "api_access": true } }' %>
+              </div>
+              <p class="mt-2 text-sm text-gray-500">Enter a valid JSON object for advanced configuration.</p>
+            </div>
+          </div>
+        </div>
+
+        <%# Form Actions %>
+        <div class="px-6 py-4 bg-gray-50 rounded-b-lg border-t border-gray-200 flex items-center justify-end space-x-3">
+          <%= link_to "Cancel", tenants_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+          
+          <%= form.submit class: "inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,713 @@
+<!-- Hero Section with Animated Gradient -->
+<section class="relative overflow-hidden bg-white">
+  <!-- Background Gradient Animation -->
+  <div class="absolute inset-0 bg-gradient-to-r from-indigo-100 via-purple-50 to-teal-50 opacity-50">
+    <div class="absolute inset-0 bg-grid-pattern"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 sm:pb-32">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+      <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+        <h1>
+          <span class="block text-base font-semibold text-indigo-600">Introducing our store</span>
+          <span class="mt-1 block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl">
+            <span class="block text-gray-900">Design for the</span>
+            <span class="block text-indigo-600">Digital World</span>
+          </span>
+        </h1>
+        <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+          Discover our curated collection of premium products designed to enhance your lifestyle. From tech to fashion, we've got you covered.
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
+          <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start">
+            <%= link_to "Shop Now", root_path, 
+                class: "inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 transition duration-150" %>
+            
+            <%= link_to "Learn More", "#features", 
+                class: "inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition duration-150" %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Image -->
+      <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
+        <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+          <div class="relative block w-full bg-white rounded-lg overflow-hidden">
+            <%= image_tag "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+                class: "w-full",
+                alt: "Hero image" %>
+            <!-- Play Button Overlay -->
+            <button type="button" class="absolute inset-0 w-full h-full flex items-center justify-center">
+              <svg class="h-20 w-20 text-indigo-600" fill="currentColor" viewBox="0 0 84 84">
+                <circle opacity="0.9" cx="42" cy="42" r="42" fill="white"/>
+                <path d="M55.5039 40.3359L37.1094 28.0729C35.7803 27.1869 34 28.1396 34 29.737V54.263C34 55.8604 35.7803 56.8131 37.1094 55.9271L55.5038 43.6641C56.6913 42.8725 56.6913 41.1275 55.5039 40.3359"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Stats Section -->
+<section class="bg-gray-50 py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+        Trusted by customers worldwide
+      </h2>
+      <p class="mt-3 text-xl text-gray-500 sm:mt-4">
+        Our numbers speak for themselves
+      </p>
+    </div>
+    <dl class="mt-10 text-center sm:max-w-3xl sm:mx-auto sm:grid sm:grid-cols-3 sm:gap-8">
+      <div class="flex flex-col">
+        <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+          Happy Customers
+        </dt>
+        <dd class="order-1 text-5xl font-extrabold text-indigo-600">
+          100K+
+        </dd>
+      </div>
+      <div class="flex flex-col mt-10 sm:mt-0">
+        <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+          Products
+        </dt>
+        <dd class="order-1 text-5xl font-extrabold text-indigo-600">
+          50K+
+        </dd>
+      </div>
+      <div class="flex flex-col mt-10 sm:mt-0">
+        <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+          Countries
+        </dt>
+        <dd class="order-1 text-5xl font-extrabold text-indigo-600">
+          100+
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+<!-- Featured Categories -->
+<section class="bg-white py-24" id="features">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Featured Categories
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+        Explore our most popular collections curated just for you.
+      </p>
+    </div>
+
+    <div class="mt-16 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Category Cards -->
+      <% categories = [
+        { name: "Electronics", 
+          description: "Latest gadgets and tech", 
+          image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+          icon: "cpu" },
+        { name: "Fashion", 
+          description: "Trendy clothing and accessories", 
+          image: "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+          icon: "shopping-bag" },
+        { name: "Home", 
+          description: "Beautiful home decor", 
+          image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+          icon: "home" }
+      ] %>
+
+      <% categories.each do |category| %>
+        <div class="group relative">
+          <div class="relative w-full h-80 rounded-lg overflow-hidden group-hover:opacity-75 transition duration-300">
+            <img src="<%= category[:image] %>" 
+                 alt="<%= category[:name] %>"
+                 class="w-full h-full object-center object-cover">
+          </div>
+          <div class="mt-6">
+            <div class="flex items-center">
+              <span class="p-2 bg-indigo-100 rounded-lg">
+                <!-- Add your icon SVG here based on category[:icon] -->
+              </span>
+              <h3 class="ml-3 text-xl font-medium text-gray-900">
+                <%= link_to category[:name], "#", class: "hover:text-indigo-600 transition" %>
+              </h3>
+            </div>
+            <p class="mt-2 text-base text-gray-500"><%= category[:description] %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="bg-gradient-to-b from-white to-gray-50 py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Why Choose Us
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+        Experience shopping redefined with our premium services.
+      </p>
+    </div>
+
+    <div class="mt-16">
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <% features = [
+          { title: "Free Shipping", 
+            description: "Free shipping on orders over $50", 
+            icon: "truck" },
+          { title: "24/7 Support", 
+            description: "Round the clock customer service", 
+            icon: "phone" },
+          { title: "Easy Returns", 
+            description: "30-day money back guarantee", 
+            icon: "refresh-ccw" }
+        ] %>
+
+        <% features.each do |feature| %>
+          <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition duration-300">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                  <!-- Add your icon SVG here based on feature[:icon] -->
+                </div>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-medium text-gray-900">
+                  <%= feature[:title] %>
+                </h3>
+                <p class="mt-2 text-base text-gray-500">
+                  <%= feature[:description] %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Image Gallery Section -->
+<section class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="col-span-1 md:col-span-2 lg:col-span-2 relative group">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop" 
+             alt="Featured"
+             class="w-full h-[500px] object-cover rounded-lg">
+        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
+          <div class="text-white opacity-0 group-hover:opacity-100 transform group-hover:translate-y-0 translate-y-4 transition-all duration-300">
+            <h3 class="text-2xl font-bold mb-2">New Collection</h3>
+            <button class="px-6 py-2 bg-white text-black rounded-full hover:bg-gray-100 transition">
+              Shop Now
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="space-y-8">
+        <div class="relative group">
+          <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&h=300&fit=crop" 
+               alt="Fashion"
+               class="w-full h-[236px] object-cover rounded-lg">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
+            <div class="text-white opacity-0 group-hover:opacity-100 transform group-hover:translate-y-0 translate-y-4 transition-all duration-300">
+              <button class="px-6 py-2 bg-white text-black rounded-full hover:bg-gray-100 transition">
+                View Collection
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="relative group">
+          <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&h=300&fit=crop" 
+               alt="Accessories"
+               class="w-full h-[236px] object-cover rounded-lg">
+          <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 rounded-lg flex items-center justify-center">
+            <div class="text-white opacity-0 group-hover:opacity-100 transform group-hover:translate-y-0 translate-y-4 transition-all duration-300">
+              <button class="px-6 py-2 bg-white text-black rounded-full hover:bg-gray-100 transition">
+                View Collection
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Categories with 3D Effect -->
+<section class="bg-gray-50 py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-extrabold text-gray-900">Shop by Category</h2>
+      <p class="mt-4 text-xl text-gray-500">Find exactly what you're looking for</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <% categories = [
+        { 
+          name: 'Electronics',
+          image: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=600&h=400&fit=crop',
+          count: '248 Products'
+        },
+        { 
+          name: 'Fashion',
+          image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&h=400&fit=crop',
+          count: '167 Products'
+        },
+        { 
+          name: 'Home',
+          image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&h=400&fit=crop',
+          count: '340 Products'
+        }
+      ] %>
+
+      <% categories.each do |category| %>
+        <div class="group perspective">
+          <div class="relative transform transition duration-500 group-hover:rotate-y-12">
+            <div class="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transform -skew-y-6 scale-105 opacity-25 group-hover:opacity-100 transition duration-500"></div>
+            <div class="relative bg-white rounded-lg overflow-hidden">
+              <div class="aspect-w-3 aspect-h-2">
+                <img src="<%= category[:image] %>" 
+                     alt="<%= category[:name] %>" 
+                     class="object-cover">
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-900"><%= category[:name] %></h3>
+                <p class="text-sm text-gray-500"><%= category[:count] %></p>
+                <div class="mt-4 flex items-center text-indigo-600 group-hover:text-indigo-500">
+                  <span class="text-sm font-medium">Shop Now</span>
+                  <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Product Features with Animation -->
+<section class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-500 transform -rotate-6 rounded-3xl opacity-20"></div>
+        <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=800&h=600&fit=crop" 
+             alt="Product Features" 
+             class="relative rounded-3xl shadow-xl">
+      </div>
+      
+      <div>
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Why Choose Us
+        </h2>
+        <p class="mt-4 text-lg text-gray-500">
+          We provide the best shopping experience with premium features
+        </p>
+        
+        <div class="mt-12 space-y-8">
+          <% features = [
+            {
+              title: "Fast Shipping",
+              description: "Get your order delivered within 2-3 business days",
+              icon: "truck"
+            },
+            {
+              title: "Secure Payment",
+              description: "Your payment information is always protected",
+              icon: "shield-check"
+            },
+            {
+              title: "24/7 Support",
+              description: "Our support team is always ready to help you",
+              icon: "phone"
+            }
+          ] %>
+
+          <% features.each do |feature| %>
+            <div class="flex items-start space-x-4 group">
+              <div class="flex-shrink-0">
+                <div class="p-3 bg-indigo-50 rounded-lg group-hover:bg-indigo-100 transition duration-300">
+                  <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-medium text-gray-900">
+                  <%= feature[:title] %>
+                </h3>
+                <p class="mt-2 text-base text-gray-500">
+                  <%= feature[:description] %>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Featured Products Section -->
+<!-- Interactive Product Showcase -->
+<section class="bg-white py-24" data-controller="product-showcase">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-x-8">
+      <!-- Product Images -->
+      <div class="lg:col-span-7">
+        <div class="grid grid-cols-2 gap-4">
+          <% showcase_images = [
+            { url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff", tag: "Lifestyle" },
+            { url: "https://images.unsplash.com/photo-1549298916-b41d501d3772", tag: "Sports" },
+            { url: "https://images.unsplash.com/photo-1523275335684-37898b6baf30", tag: "Tech" },
+            { url: "https://images.unsplash.com/photo-1491553895911-0055eca6402d", tag: "Fashion" }
+          ] %>
+
+          <% showcase_images.each_with_index do |image, index| %>
+            <div class="relative group overflow-hidden rounded-lg <%= index.zero? ? 'col-span-2 h-96' : 'h-72' %>"
+                 data-action="mouseenter->product-showcase#showDetails">
+              <img src="<%= image[:url] %>?w=800&h=600&fit=crop" 
+                   alt="Showcase"
+                   class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 opacity-0 group-hover:opacity-100 transition duration-300">
+                <div class="absolute bottom-0 left-0 right-0 p-6">
+                  <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-white text-gray-800">
+                    <%= image[:tag] %>
+                  </span>
+                  <p class="mt-2 text-lg font-medium text-white transform translate-y-4 group-hover:translate-y-0 transition duration-300">
+                    Best Sellers in <%= image[:tag] %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Interactive Features -->
+      <div class="mt-10 lg:mt-0 lg:col-span-5">
+        <div class="sticky top-8">
+          <div class="space-y-12" data-product-showcase-target="details">
+            <div>
+              <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                Discover Our Collections
+              </h2>
+              <p class="mt-4 text-gray-500">
+                Explore our carefully curated collections featuring the latest trends and timeless classics.
+              </p>
+            </div>
+
+            <!-- Interactive Stats -->
+            <div class="grid grid-cols-3 gap-4">
+              <% [
+                { number: "50K+", label: "Products" },
+                { number: "100+", label: "Brands" },
+                { number: "1M+", label: "Customers" }
+              ].each do |stat| %>
+                <div class="bg-gray-50 rounded-lg p-4 text-center hover:bg-gray-100 transition duration-300">
+                  <div class="text-2xl font-bold text-indigo-600"><%= stat[:number] %></div>
+                  <div class="text-sm text-gray-500"><%= stat[:label] %></div>
+                </div>
+              <% end %>
+            </div>
+
+            <!-- Animated Features List -->
+            <div class="space-y-4">
+              <% [
+                { title: "Free Worldwide Shipping", desc: "On orders over $100" },
+                { title: "24/7 Customer Support", desc: "Here to help anytime" },
+                { title: "Money Back Guarantee", desc: "30-day return policy" }
+              ].each do |feature| %>
+                <div class="flex items-center p-4 bg-white border border-gray-200 rounded-lg hover:border-indigo-500 hover:shadow-md transition duration-300">
+                  <div class="flex-1">
+                    <h3 class="font-medium text-gray-900"><%= feature[:title] %></h3>
+                    <p class="text-sm text-gray-500"><%= feature[:desc] %></p>
+                  </div>
+                  <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              <% end %>
+            </div>
+
+            <!-- CTA Button -->
+            <div>
+              <button class="w-full flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition duration-300">
+                Shop Now
+                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Animated Timeline Section -->
+<section class="bg-gray-50 py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-extrabold text-gray-900">How It Works</h2>
+      <p class="mt-4 text-xl text-gray-500">Simple steps to start shopping with us</p>
+    </div>
+
+    <div class="relative">
+      <!-- Timeline Line -->
+      <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-indigo-200"></div>
+
+      <!-- Timeline Items -->
+      <div class="space-y-16">
+        <% [
+          { title: "Create Account", desc: "Sign up and join our community", icon: "user-plus" },
+          { title: "Browse Products", desc: "Explore our wide selection", icon: "search" },
+          { title: "Add to Cart", desc: "Select your favorite items", icon: "shopping-cart" },
+          { title: "Fast Delivery", desc: "Receive your order quickly", icon: "truck" }
+        ].each_with_index do |step, index| %>
+          <div class="relative" data-controller="scroll-reveal">
+            <div class="flex items-center justify-center">
+              <div class="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full bg-indigo-600 text-white flex items-center justify-center">
+                <%= index + 1 %>
+              </div>
+            </div>
+            <div class="<%= index.even? ? 'ml-auto pl-16' : 'mr-auto pr-16' %> w-1/2">
+              <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                <h3 class="text-lg font-medium text-gray-900"><%= step[:title] %></h3>
+                <p class="mt-2 text-gray-500"><%= step[:desc] %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Brand Carousel -->
+<section class="bg-white py-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative" data-controller="brand-carousel">
+      <div class="flex space-x-12 animate-marquee">
+        <% 8.times do |i| %>
+          <div class="flex-none w-48 h-24 bg-gray-50 rounded-lg flex items-center justify-center">
+            <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop"
+                 class="max-w-[120px] grayscale hover:grayscale-0 transition duration-300"
+                 alt="Brand">
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Featured Products
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+        Discover our most popular items loved by customers
+      </p>
+    </div>
+
+    <div class="mt-16 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
+      <% 4.times do |i| %>
+        <div class="group relative">
+          <div class="relative w-full h-64 rounded-lg overflow-hidden group-hover:opacity-75 transition duration-300">
+            <!-- Using placeholder image -->
+            <%= image_tag "smart-watch.jpg", 
+                 alt:"Product placeholder",
+                 class:"w-full h-full object-center object-cover" %>
+          </div>
+          
+          <!-- Quick Shop Button -->
+          <div class="absolute bottom-4 inset-x-4 opacity-0 group-hover:opacity-100 transition duration-200">
+            <button class="w-full flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition">
+              Quick View
+              <svg class="ml-2 -mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="mt-4 flex justify-between">
+            <div>
+              <h3 class="text-sm font-medium text-gray-900">
+                <a href="#" class="hover:text-indigo-600 transition">
+                  Product <%= i + 1 %>
+                </a>
+              </h3>
+              <p class="mt-1 text-sm text-gray-500">
+                Category <%= ['Electronics', 'Fashion', 'Home', 'Accessories'][i % 4] %>
+              </p>
+            </div>
+            <p class="text-sm font-medium text-gray-900">
+              $<%= rand(50..200) %>.99
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="#" 
+         class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 transition">
+        View All Products
+        <svg class="ml-2 -mr-1 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- Trending Products Carousel -->
+<section class="bg-gray-50 py-24 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        Trending Now
+      </h2>
+      <div class="hidden sm:flex sm:items-center space-x-3">
+        <button class="p-2 rounded-full bg-white shadow hover:bg-indigo-50 transition" data-action="click->carousel#previous">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button class="p-2 rounded-full bg-white shadow hover:bg-indigo-50 transition" data-action="click->carousel#next">
+          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-8 relative" data-controller="carousel">
+      <div class="flex space-x-8 overflow-hidden">
+        <% product_images = [
+          "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+          "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f",
+          "https://images.unsplash.com/photo-1485955900006-10f4d324d411",
+          "https://images.unsplash.com/photo-1491553895911-0055eca6402d",
+          "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+          "https://images.unsplash.com/photo-1460353581641-37baddab0fa2"
+        ] %>
+
+        <% product_images.each_with_index do |image_url, i| %>
+          <div class="flex-none w-64 transform transition duration-500">
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-lg transition p-4">
+              <div class="relative aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
+                <img src="<%= image_url %>?w=320&h=320&fit=crop" 
+                     class="w-full h-full object-center object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-10 transition flex items-center justify-center">
+                  <button class="opacity-0 hover:opacity-100 px-4 py-2 bg-white rounded-full text-sm font-medium">
+                    Quick View
+                  </button>
+                </div>
+              </div>
+              <div class="mt-4">
+                <h3 class="text-sm font-medium text-gray-900">
+                  Trending Product <%= i + 1 %>
+                </h3>
+                <p class="mt-1 text-sm text-gray-500">$<%= rand(50..200) %>.99</p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="bg-white py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        What Our Customers Say
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+        Don't just take our word for it
+      </p>
+    </div>
+
+    <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <% testimonials = [
+        { name: "Sarah Johnson", 
+          role: "Fashion Enthusiast", 
+          image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop",
+          content: "The quality of products and customer service is outstanding. I'm a regular customer now!" },
+        { name: "Mike Peters", 
+          role: "Tech Reviewer", 
+          image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop",
+          content: "Best tech deals I've found online. Fast shipping and great prices." },
+        { name: "Emma Davis", 
+          role: "Interior Designer", 
+          image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop",
+          content: "The home collection is amazing. My clients love everything I've ordered." }
+      ] %>
+
+      <% testimonials.each do |testimonial| %>
+        <div class="bg-gray-50 rounded-xl p-8 hover:bg-gray-100 transition duration-300">
+          <div class="flex items-center">
+            <img src="<%= testimonial[:image] %>" 
+                 alt="<%= testimonial[:name] %>" 
+                 class="h-12 w-12 rounded-full object-cover">
+            <div class="ml-4">
+              <h3 class="text-lg font-medium text-gray-900"><%= testimonial[:name] %></h3>
+              <p class="text-sm text-gray-500"><%= testimonial[:role] %></p>
+            </div>
+          </div>
+          <blockquote class="mt-6 text-gray-700">
+            "<%= testimonial[:content] %>"
+          </blockquote>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Brand Showcase -->
+<section class="bg-gray-50 py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="sr-only">Our Partners</h2>
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
+      <% partner_logos = [
+        "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9",
+        "https://images.unsplash.com/photo-1599305446868-59e861874f78",
+        "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9",
+        "https://images.unsplash.com/photo-1599305446868-59e861874f78",
+        "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9"
+      ] %>
+
+      <% partner_logos.each_with_index do |logo_url, i| %>
+        <div class="col-span-1 flex justify-center items-center">
+          <img src="<%= logo_url %>?w=120&h=48&fit=crop" 
+               alt="Partner <%= i + 1 %>"
+               class="h-12 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition">
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<!-- Add background pattern CSS -->
+<% content_for :head do %>
+  <style>
+    .bg-grid-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+  </style>
+<% end %>
